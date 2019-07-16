@@ -38,11 +38,11 @@ class IterativeMask:
             self._draw = False
 
     def run(self):
-        cv2.namedWindow('image')
-        cv2.setMouseCallback('image', self.getMask)
+        cv2.namedWindow('Please Label Image')
+        cv2.setMouseCallback('Please Label Image', self.getMask)
 
         while (1):
-            cv2.imshow('image', self.im)
+            cv2.imshow('Please Label Image', self.im)
             k = cv2.waitKey(1) & 0xFF
             if k == ord('q') or k == 27:
                 break
