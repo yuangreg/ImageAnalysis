@@ -38,7 +38,9 @@ class IterativeMask:
             self._draw = False
 
     def run(self):
-        cv2.namedWindow('Please Label Image')
+        cv2.namedWindow('Please Label Image', cv2.WINDOW_NORMAL)
+        h, w, c = self.im.shape
+        cv2.resizeWindow('Please Label Image', int(480/h*w), 480)
         cv2.setMouseCallback('Please Label Image', self.getMask)
 
         while (1):
