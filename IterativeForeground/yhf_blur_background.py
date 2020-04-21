@@ -1,11 +1,11 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-from InterativeMask import IterativeMask
+from InterativeMask import InteractiveMask
 
 # Initial User Mask
 img = cv2.imread("./data/1493462248.jpg")
-getMask = IterativeMask(img)
+getMask = InteractiveMask(img)
 mask_user = getMask.run()
 # plt.imshow(mask_user, cmap='gray')
 # plt.title('User input mask')
@@ -30,7 +30,7 @@ while(1):
     # mask on image
     img_new = (img_filterd*0.5+mask_new[:,:,np.newaxis]*127).astype('uint8')
 
-    getMask = IterativeMask(img_new)
+    getMask = InteractiveMask(img_new)
     mask_user = getMask.run()
     if(mask_user.max() == 128 and mask_user.min() == 128):
         break
@@ -40,4 +40,4 @@ while(1):
 img_foreground = img*mask_new[:,:,np.newaxis]
 img_background = cv2.GaussianBlur(img,(51,51),0)*(1-mask_new[:,:,np.newaxis])
 img_new = img_foreground + img_background
-cv2.imwrite("./yhf_combine.jpg", img_new)
+cv2.imwrite("./yhf_blur_background.jpg", img_new)

@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-class IterativeMask:
+class InteractiveMask:
     def __init__(self, im):
         self.im = im.copy()
         self.mask = 128*np.ones(im.shape[:2],np.uint8)
@@ -53,7 +53,7 @@ class IterativeMask:
 
 if __name__ == "__main__":
     img = np.zeros((512, 512, 3), np.uint8)
-    getMask = IterativeMask(img)
+    getMask = InteractiveMask(img)
     mask = getMask.run()
     plt.imshow(mask, cmap='gray')
     plt.show()
